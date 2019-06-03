@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MeetMe</string>
+
+    <string name="decription">
+        "Call me " application is a dating application and so much more that concerns ladies.
+        This application is for people aged 18 and above.
+
+    </string>
+    <string name="check">
+        Tick to confirm that your above 18 years of age.
+    </string>
 </resources>
