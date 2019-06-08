@@ -17,6 +17,23 @@ public class viewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         mView = itemView;
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClickListener.onItemClick(v,getAdapterPosition());
+
+            }
+        });
+
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                mClickListener.onLongCickListener(v, getAdapterPosition());
+                return true;
+            }
+        });
     }
 
     public  void Setdetails(Context ctx, String Title, String Price, String image){
@@ -27,6 +44,20 @@ public class viewHolder extends RecyclerView.ViewHolder {
         textView1.setText(Title);
         textView2.setText(Price);
         Picasso.get().load(image).into(imageView1);
+    }
+
+    private viewHolder.ClickListener mClickListener;
+
+    //interface to send call backs
+    public interface ClickListener{
+        void onItemClick(View view, int position);
+        void onLongCickListener(View view, int position);
+
+    }
+
+    public void setOnClickListener(viewHolder.ClickListener clickListener){
+        mClickListener = clickListener;
+
     }
 
 }

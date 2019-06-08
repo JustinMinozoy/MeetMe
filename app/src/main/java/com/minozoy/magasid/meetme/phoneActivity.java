@@ -1,6 +1,7 @@
 package com.minozoy.magasid.meetme;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,6 +23,10 @@ public class phoneActivity extends AppCompatActivity {
         button = (Button)findViewById(R.id.btn_Login);
         text = (EditText)findViewById(R.id.phone);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,4 +41,10 @@ public class phoneActivity extends AppCompatActivity {
         finish();
     }
 
+    // handle on back pressed go to previous activity
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

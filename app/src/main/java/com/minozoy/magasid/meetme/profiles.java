@@ -1,5 +1,9 @@
 package com.minozoy.magasid.meetme;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +13,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.io.ByteArrayOutputStream;
 
 public class profiles extends AppCompatActivity {
 
@@ -56,10 +66,63 @@ public class profiles extends AppCompatActivity {
                     protected void populateViewHolder(viewHolder viewHolder, model model, int position) {
                         viewHolder.Setdetails(getApplicationContext(),model.getTitle(),model.getPrice(),model.getImage());
                     }
+
+
+                    @Override
+                    public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                        viewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
+
+                        viewHolder.setOnClickListener(new viewHolder.ClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                //views
+                                TextView textView1 = view.findViewById(R.id.Title);
+                                TextView textView2 = view.findViewById(R.id.Price);
+                                ImageView imageView = view.findViewById(R.id.Image);
+
+                                //getData from Views
+                                String mTitle = textView1.getText().toString();
+                                String mDesc = textView2.getText().toString();
+                                Drawable drawable = imageView.getDrawable();
+
+                                Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+
+                                //pass this data to new activity
+
+                                Intent lintent = new Intent(view.getContext(),LadieDetails.class);
+
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
+                                byte[] bytes = stream.toByteArray();
+
+                                lintent.putExtra("Image", bytes);//puts bitMap image as array of bytes
+                                lintent.putExtra("Title",mTitle);// puts title
+                                lintent.putExtra("Description",mDesc);//puts Description
+
+                                startActivity(lintent);
+
+                            }
+
+                            @Override
+                            public void onLongCickListener(View view, int position) {
+
+                                // this one is for saving Image to the Phone gallery
+
+                            }
+                        });
+
+                        return viewHolder;
+                    }
+
+
                 };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
 
     }
+
+    //Load data into RecycleView on start
 
     @Override
     public void onStart(){
@@ -75,6 +138,56 @@ public class profiles extends AppCompatActivity {
                     protected void populateViewHolder(viewHolder viewHolder, model model, int position) {
                         viewHolder.Setdetails(getApplicationContext(),model.getTitle(),model.getPrice(),model.getImage());
                     }
+
+
+                    @Override
+                    public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                        viewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
+
+                        viewHolder.setOnClickListener(new viewHolder.ClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                //views
+                                TextView textView1 = view.findViewById(R.id.Title);
+                                TextView textView2 = view.findViewById(R.id.price);
+                                ImageView imageView = view.findViewById(R.id.Image);
+
+                                //getData from Views
+                                String mTitle = textView1.getText().toString();
+                                String mDesc = textView2.getText().toString();
+                                Drawable drawable = imageView.getDrawable();
+
+                                Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+
+                                //pass this data to new activity
+
+                                Intent lintent = new Intent(view.getContext(),LadieDetails.class);
+
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
+                                byte[] bytes = stream.toByteArray();
+
+                                lintent.putExtra("Image", bytes);//puts bitMap image as array of bytes
+                                lintent.putExtra("Title",mTitle);// puts title
+                                lintent.putExtra("Description",mDesc);//puts Description
+
+                                startActivity(lintent);
+
+                            }
+
+                            @Override
+                            public void onLongCickListener(View view, int position) {
+
+                                // this one is for saving Image to the Phone gallery
+
+                            }
+                        });
+
+                        return viewHolder;
+                    }
+
                 };
 
         recyclerView.setAdapter(firebaseAdapter);
