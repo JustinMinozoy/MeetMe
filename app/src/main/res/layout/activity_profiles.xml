@@ -5,22 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profiles"
+    android:orientation="vertical"
     android:background="@color/colorPrimary">
 
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ScrollView>
-
-
-    </RelativeLayout>
+    </android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

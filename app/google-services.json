@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "120613437894",
+    "firebase_url": "https://meetme-b4b10.firebaseio.com",
+    "project_id": "meetme-b4b10",
+    "storage_bucket": "meetme-b4b10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120613437894:android:df9c5d5deb70ab40",
+        "android_client_info": {
+          "package_name": "com.minozoy.magasid.meetme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120613437894-ti6ddfsmkgcbival4mjf70gjaesv6fki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.minozoy.magasid.meetme",
+            "certificate_hash": "7ee990410c541a52a6c46e806a5a50be97be4f35"
+          }
+        },
+        {
+          "client_id": "120613437894-lnq7s0j16um3gfbqq6t4r5s05fqh5aa1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbjaJNYgpj7ja0KtjtUJJesMekdhlMpIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120613437894-lnq7s0j16um3gfbqq6t4r5s05fqh5aa1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
