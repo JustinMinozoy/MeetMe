@@ -2,8 +2,7 @@ package com.minozoy.magasid.meetme;
 
 public class model {
 
-    String Image, Price, Title;
-
+    private String Image, Price, Title;
     public model() {}
 
     public String getImage() {
@@ -19,7 +18,7 @@ public class model {
     }
 
     public void setPrice(String price) {
-       this.Price = price;
+        Price = price;
     }
 
     public String getTitle() {
@@ -27,6 +26,6 @@ public class model {
     }
 
     public void setTitle(String title) {
-        this.Title = title;
+        Title = title;
     }
 }

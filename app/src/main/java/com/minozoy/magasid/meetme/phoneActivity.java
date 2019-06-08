@@ -36,10 +36,4 @@ public class phoneActivity extends AppCompatActivity {
         finish();
     }
 
-    private void openDialogue() {
-        Dialogue dialogue = new Dialogue();
-        dialogue.show(getSupportFragmentManager(),"Code ");
-
-    }
-
 }
