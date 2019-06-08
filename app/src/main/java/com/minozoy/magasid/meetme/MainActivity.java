@@ -1,7 +1,6 @@
 package com.minozoy.magasid.meetme;
 
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.CheckBox;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
-
     CheckBox checkBox;
 
     @Override
@@ -37,9 +35,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,phoneActivity.class));
+                startActivity(new Intent(MainActivity.this,HelpActivity.class));
                 finish();
             }
         });
+
     }
+
 }
