@@ -1,7 +1,10 @@
 package com.minozoy.magasid.meetme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,12 +21,19 @@ public class phoneActivity extends AppCompatActivity {
 
         button = (Button)findViewById(R.id.btn_Login);
         text = (EditText)findViewById(R.id.phone);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialogue();
+                openOne();
             }
         });
+    }
+
+    private void openOne() {
+
+        startActivity(new Intent(phoneActivity.this,profiles.class));
+        finish();
     }
 
     private void openDialogue() {
@@ -31,4 +41,5 @@ public class phoneActivity extends AppCompatActivity {
         dialogue.show(getSupportFragmentManager(),"Code ");
 
     }
+
 }
