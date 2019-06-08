@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class LadieDetails extends AppCompatActivity {
 
     TextView textTitle, textDesc;
@@ -31,15 +33,13 @@ public class LadieDetails extends AppCompatActivity {
         image12 = findViewById(R.id.image);
 
         //get Data from intent
-        byte [] bytes  = getIntent().getByteArrayExtra("Image");
+        String Image = getIntent().getStringExtra("Image");
         String title = getIntent().getStringExtra("Title");
         String desc = getIntent().getStringExtra("Description");
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0 ,bytes.length);
-
         textTitle.setText(title);
         textDesc.setText(desc);
-        image12.setImageBitmap(bitmap);
+        Picasso.get().load(Image).into(image12);
 
     }
 

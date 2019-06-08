@@ -76,30 +76,18 @@ public class profiles extends AppCompatActivity {
                         viewHolder.setOnClickListener(new viewHolder.ClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                //views
-                                TextView textView1 = view.findViewById(R.id.Title);
-                                TextView textView2 = view.findViewById(R.id.Price);
-                                ImageView imageView = view.findViewById(R.id.Image);
 
-                                //getData from Views
-                                String mTitle = textView1.getText().toString();
-                                String mDesc = textView2.getText().toString();
-                                Drawable drawable = imageView.getDrawable();
-
-                                Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+                                //getData from FireBase Position
+                                String mTitle = getItem(position).getTitle();
+                                String mDesc = getItem(position).getPrice();
+                                String Image = getItem(position).getImage();
 
                                 //pass this data to new activity
 
                                 Intent lintent = new Intent(view.getContext(),LadieDetails.class);
-
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-                                bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                                byte[] bytes = stream.toByteArray();
-
-                                lintent.putExtra("Image", bytes);//puts bitMap image as array of bytes
                                 lintent.putExtra("Title",mTitle);// puts title
                                 lintent.putExtra("Description",mDesc);//puts Description
+                                lintent.putExtra("Image", Image);//puts Image Url
 
                                 startActivity(lintent);
 
@@ -148,30 +136,18 @@ public class profiles extends AppCompatActivity {
                         viewHolder.setOnClickListener(new viewHolder.ClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                //views
-                                TextView textView1 = view.findViewById(R.id.Title);
-                                TextView textView2 = view.findViewById(R.id.price);
-                                ImageView imageView = view.findViewById(R.id.Image);
 
-                                //getData from Views
-                                String mTitle = textView1.getText().toString();
-                                String mDesc = textView2.getText().toString();
-                                Drawable drawable = imageView.getDrawable();
-
-                                Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+                                //getData from FireBase Position
+                                String mTitle = getItem(position).getTitle();
+                                String mDesc = getItem(position).getPrice();
+                                String Image = getItem(position).getImage();
 
                                 //pass this data to new activity
 
                                 Intent lintent = new Intent(view.getContext(),LadieDetails.class);
-
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-                                bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                                byte[] bytes = stream.toByteArray();
-
-                                lintent.putExtra("Image", bytes);//puts bitMap image as array of bytes
                                 lintent.putExtra("Title",mTitle);// puts title
                                 lintent.putExtra("Description",mDesc);//puts Description
+                                lintent.putExtra("Image", Image);//puts Image Url
 
                                 startActivity(lintent);
 

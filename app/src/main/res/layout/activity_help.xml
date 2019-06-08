@@ -15,7 +15,6 @@
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text="Report a problem"
-            android:layout_marginLeft=""
             android:textSize="20dp" />
 
         <TextView
