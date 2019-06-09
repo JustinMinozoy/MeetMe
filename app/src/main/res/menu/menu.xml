@@ -8,5 +8,10 @@
         android:title="Search"
         app:showAsAction="always"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
+    <item
+        android:id="@+id/sort"
+        android:icon="@drawable/ic_action_sort"
+        android:title="SortLadies"
+        app:showAsAction="never"/>
 
 </menu>

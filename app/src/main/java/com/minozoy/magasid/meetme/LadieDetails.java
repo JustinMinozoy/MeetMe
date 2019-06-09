@@ -19,7 +19,6 @@ public class LadieDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ladie_details);
-
         ActionBar actionBar = getSupportActionBar();
 
         //  Bar Title

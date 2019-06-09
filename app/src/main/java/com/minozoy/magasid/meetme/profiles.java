@@ -1,11 +1,14 @@
 package com.minozoy.magasid.meetme;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +32,9 @@ public class profiles extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
+    LinearLayoutManager mLayoutManager;//for sort
+    SharedPreferences mSharedPreferences;// for aving sort items
+
     FirebaseDatabase mFireBase;
 
     DatabaseReference reference;
@@ -41,13 +47,34 @@ public class profiles extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Available Ladies Lists...");
 
+        mSharedPreferences =getSharedPreferences("SortSettings",MODE_PRIVATE);
+
+        // now by default new arrivals will be seen first
+        String start = mSharedPreferences.getString("SortLadies","newest");
+
+        if(start.equals("newest")){
+            mLayoutManager  =  new LinearLayoutManager(this);
+            //this means data will load from the bottom ie from the newest to the oldest
+            mLayoutManager.setReverseLayout(true);
+            mLayoutManager.setStackFromEnd(true);
+        }
+        else if(start.equals("oldest")){
+            mLayoutManager  =  new LinearLayoutManager(this);
+            //this means data will load from the bottom ie from the oldest to the newest
+            mLayoutManager.setReverseLayout(false);
+            mLayoutManager.setStackFromEnd(false);
+        }
+
         recyclerView = findViewById(R.id.recycle_view);
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         mFireBase = FirebaseDatabase.getInstance();
         reference = mFireBase.getReference("Data");
+
+        //set layout as LinearLayout
+        recyclerView.setLayoutManager(mLayoutManager);
+
+
 
     }
 
@@ -201,6 +228,52 @@ public class profiles extends AppCompatActivity {
         int id = item.getItemId();
 
         //handle other items on clicks
+
+        if(id == R.id.sort){
+            //display an alert Dialogue to choose from
+            sortDialogue();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void sortDialogue() {
+
+        //options top select from in the dialogue
+        String [] list = {"New Arrivals", "First Ladies"};
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Sort by;")// set Title
+                .setIcon(R.drawable.ic_action_sort)
+                .setItems(list, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //the which item contains the position of the selected item
+                        //0 means new arrivals 1 means first ladies
+
+                        if (which == 0) {
+                            //show new ladies/arrivals
+                            //Edit our shared preferences
+
+                            SharedPreferences.Editor editor = mSharedPreferences.edit();
+                            editor.putString("Sort","newest");//where sort is the key and newest is the value
+                            editor.apply();//apply means save the value in our shared preferences
+                            recreate();//restart activity to take effect
+
+                        }else if(which==1){
+                            //show old ones
+                            //Edit our shared preferences
+
+                            SharedPreferences.Editor editor = mSharedPreferences.edit();
+                            editor.putString("Sort","oldest");//where sort is the key and oldest is the value
+                            editor.apply();//apply means save the value in our shared preferences
+                            recreate();//restart activity to take effect
+                        }
+                    }
+                });
+        dialog.show();
+
+
     }
 }
