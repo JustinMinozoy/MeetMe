@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".HelpActivity">
 
-        <TextView
+
+        <Button
             android:id="@+id/report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,14 +19,26 @@
             android:text="Report a problem"
             android:textSize="20dp" />
 
-        <TextView
+        <Button
+            android:id="@+id/feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:padding="25dp"
+            android:layout_marginTop="200dp"
+            android:gravity="center"
+            android:text="Send Feedback"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="25dp"
             android:fontFamily="sans-serif-black"
             android:text="Call help line"
             android:textSize="20sp"
-            android:layout_marginTop="200dp"/>
+            android:layout_marginTop="250dp"/>
 
 
 
