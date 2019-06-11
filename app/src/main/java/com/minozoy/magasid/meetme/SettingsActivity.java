@@ -101,7 +101,7 @@ public class SettingsActivity extends AppCompatActivity
             if (user != null)
             {
                 firebaseAuth.signOut();
-                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, HelpActivity.class);
                 startActivity(intent);
                 finish();
 

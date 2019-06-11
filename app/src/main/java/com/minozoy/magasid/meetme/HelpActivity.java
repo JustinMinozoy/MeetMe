@@ -1,11 +1,8 @@
 package com.minozoy.magasid.meetme;
 
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,7 +10,7 @@ public class HelpActivity extends AppCompatActivity {
 
     Button Report;
     Button Feedback;
-    Button Call;
+    Button HelpCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +19,13 @@ public class HelpActivity extends AppCompatActivity {
 
         Report = findViewById(R.id.report);
         Feedback = findViewById(R.id.feedback);
-        Call = findViewById(R.id.call);
+        HelpCall = findViewById(R.id.call);
 
         Report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(HelpActivity.this, Report.class));
+                startActivity(new Intent(HelpActivity.this, LadieDetails.class));
                 finish();
-
             }
         });
 
@@ -40,18 +35,14 @@ public class HelpActivity extends AppCompatActivity {
 
                 startActivity(new Intent(HelpActivity.this, Feedback.class));
                 finish();
-
             }
         });
 
-        Call.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
+        HelpCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(HelpActivity.this, Call.class));
-                finish();
-
+                startActivity(new Intent(HelpActivity.this, HelplineCall.class));
             }
         });
 

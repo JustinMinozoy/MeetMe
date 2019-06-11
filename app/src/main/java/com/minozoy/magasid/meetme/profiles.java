@@ -67,7 +67,6 @@ public class profiles extends AppCompatActivity {
                         viewHolder.Setdetails(getApplicationContext(),model.getTitle(),model.getPrice(),model.getImage());
                     }
 
-
                     @Override
                     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
