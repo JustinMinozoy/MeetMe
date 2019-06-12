@@ -24,7 +24,6 @@ public class phoneActivity extends AppCompatActivity {
         text = (EditText)findViewById(R.id.phone);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
         button.setOnClickListener(new View.OnClickListener() {

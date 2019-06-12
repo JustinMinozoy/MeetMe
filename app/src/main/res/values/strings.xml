@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Call Me</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <string name="decription">
         "Call me " application is a dating application and so much more that concerns ladies.
@@ -17,8 +19,6 @@
         This Message may incur some charges.
     </string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>

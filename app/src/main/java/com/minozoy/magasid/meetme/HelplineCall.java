@@ -32,7 +32,7 @@ public class HelplineCall extends AppCompatActivity {
 
     public void onDial(View view){
         Intent intent = new Intent(Intent.ACTION_CALL);
-        Intent.setData(Uri.parse("tel:0770694723"));
+        //Intent.setData(Uri.parse("tel:0770694723"));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
             return;
