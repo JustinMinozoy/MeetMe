@@ -19,18 +19,26 @@ public class HelplineCall extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_helpline_call);
 
-        buttoncall.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:0377778888"));
+     buttoncall = findViewById(R.id.call);
 
-                if (ActivityCompat.checkSelfPermission(HelplineCall.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent);
-            }
-        });
+     buttoncall.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+
+         }
+     });
 
     }
+
+    public void onDial(View view){
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Intent.setData(Uri.parse("tel:0770694723"));
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
+        startActivity(intent);
+
+    }
+
 }

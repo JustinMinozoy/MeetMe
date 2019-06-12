@@ -273,6 +273,5 @@ public class profiles extends AppCompatActivity {
                 });
         dialog.show();
 
-
     }
 }

@@ -1,10 +1,8 @@
 package com.minozoy.magasid.meetme;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -72,6 +70,15 @@ public class SettingsActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+
+        if (id == R.id.nav_share){
+            ApplicationInfo api = getApplicationContext().getApplicationInfo();
+            String apkpath = api.sourceDir;
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("application/vnd.android.package-archive");
+            startActivity(Intent.createChooser(intent, "Share Via"));
+        }
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
