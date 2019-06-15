@@ -6,18 +6,11 @@
     <string name="decription">
         "Call me " application is a dating application and so much more that concerns ladies.
         This application is for people aged 18 and above.
+    </string>
+    <string name="check">Tick to confirm that your above 18 years of age.</string>
+    <string name="one">Logging in,you agree to our terms and conditions.</string>
 
-    </string>
-    <string name="check">
-        Tick to confirm that your above 18 years of age.
-    </string>
-    <string name="one">
-        Logging in,you agree to our terms and conditions.
-    </string>
-
-    <string name="codemeso">
-        This Message may incur some charges.
-    </string>
+    <string name="codemeso">This Message may incur some charges.</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>

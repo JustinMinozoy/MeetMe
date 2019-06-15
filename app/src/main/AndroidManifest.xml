@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LadieDetails"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LadieDetails" />
         <activity android:name=".profiles" />
         <activity android:name=".phoneActivity" />
-        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".HelpActivity" />
         <activity android:name=".RatingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -195,7 +195,7 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
                             @Override
                             public void onLongCickListener(View view, int position) {
 
-                                // this one is for saving Image to the Phone gallery
+                                // this one is for saving Image to Phone gallery
 
                             }
                         });
@@ -294,7 +294,7 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
 
         switch(item.getItemId()){
             case R.id.help:
-                Toast.makeText(this,"Help Button has been",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Help Button has been Touched",Toast.LENGTH_SHORT).show();
                 break;
 
         }

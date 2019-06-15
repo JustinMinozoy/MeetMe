@@ -9,6 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="CODE"
+            android:digits="0123456789"
             android:fontFamily="sans-serif-medium"
             android:inputType="number"
             android:layout_marginTop="20dp"
