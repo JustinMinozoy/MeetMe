@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
                 .withFullScreen()
                 .withTargetActivity(MainActivity.class)
                 .withSplashTimeOut(4000)
-                .withBackgroundColor(Color.parseColor("#2980b9"))
+                .withBackgroundColor(Color.parseColor("#686de0"))
                 .withHeaderText("")
                 .withFooterText("Made By Eddy Taia & Mogasid")
                 .withBeforeLogoText("")

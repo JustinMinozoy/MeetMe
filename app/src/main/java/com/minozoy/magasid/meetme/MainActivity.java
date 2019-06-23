@@ -6,15 +6,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.hbb20.CountryCodePicker;
 
 public class MainActivity extends AppCompatActivity {
 
 
      private long backpress;
      private Toast toast;
-     private Button button;
+     private RelativeLayout layout;
      public CheckBox checkBox;
+
+    private EditText editText;
+
+    private CountryCodePicker countryCodePicker;
+    private String TAG;
+    public String verifiCation;
+    private String phoneNumber;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +37,62 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         checkBox = (CheckBox) findViewById(R.id.confirm);
-
-        button = (Button) findViewById(R.id.btn_signin);
+        layout = (RelativeLayout) findViewById(R.id.Grid);
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkBox.isChecked()) {
-                    button.setVisibility(View.VISIBLE);
+                    //layout.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(MainActivity.this,profiles.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    button.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        editText = (EditText) findViewById(R.id.phoneText);
+        countryCodePicker = (CountryCodePicker) findViewById(R.id.ccp);
+        countryCodePicker.registerCarrierNumberEditText(editText);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        findViewById(R.id.btnproceed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,phoneActivity.class));
-                finish();
+                String code = countryCodePicker.getFullNumberWithPlus();
+
+
+
+                if (code.isEmpty() || code.length() < 10) {
+                    editText.setError("Invalid Phone Number");
+                    editText.requestFocus();
+                    return;
+                }
+
+                String phonenumber = "+" + code ;
+
+                Intent intent = new Intent(MainActivity.this, VerificationActivity.class);
+                intent.putExtra("phonenumber", phonenumber);
+                startActivity(intent);
+
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent intent = new Intent(MainActivity.this, VerificationActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            startActivity(intent);
+        }
     }
 
     @Override

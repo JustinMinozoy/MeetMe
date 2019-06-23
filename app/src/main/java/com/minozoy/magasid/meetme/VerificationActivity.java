@@ -45,8 +45,8 @@ public class VerificationActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar);
         editText = findViewById(R.id.editTextCode);
 
-        String phonenumber = getIntent().getStringExtra("phonenumber");
-        sendVerificationCode(phonenumber);
+        String phone_number = getIntent().getStringExtra("phone_number");
+        sendVerificationCode(phone_number);
 
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,14 +94,16 @@ public class VerificationActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber){
+        String phoneNumber1 = editText.getText().toString().trim();
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                this,               // Activity (for callback binding)
-                mCallbacks     // OnVerificationStateChangedCallbacks
-        );
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    phoneNumber,        // Phone number to verify
+                    60,                 // Timeout duration
+                    TimeUnit.SECONDS,   // Unit of timeout
+                    this,               // Activity (for callback binding)
+                    mCallbacks     // OnVerificationStateChangedCallbacks
+            );
+
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks

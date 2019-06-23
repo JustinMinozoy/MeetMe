@@ -2,11 +2,6 @@
     <string name="app_name">Call Me</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-
-    <string name="decription">
-        "Call me " application is a dating application and so much more that concerns ladies.
-        This application is for people aged 18 and above.
-    </string>
     <string name="check">Tick to confirm that your above 18 years of age.</string>
     <string name="one">Logging in,you agree to our terms and conditions.</string>
 

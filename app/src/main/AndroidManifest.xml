@@ -3,6 +3,9 @@
     package="com.minozoy.magasid.meetme">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,16 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".VerificationActivity"></activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".LadieDetails" />
         <activity android:name=".profiles" />
-        <activity android:name=".phoneActivity" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".RatingActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

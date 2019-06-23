@@ -1,8 +1,12 @@
 package com.minozoy.magasid.meetme;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -47,45 +52,62 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
 
-        Toolbar toolbar = findViewById(R.id.app_bar);
-        drawerLayout = findViewById(R.id.drawer1);
-        setSupportActionBar(toolbar);
+        if(!connectivity()){
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_stat_network)
+                    .setTitle("Network Connection Alert")
+                    .setMessage("Please Check your Internet Connection!!!")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toggle  = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
-        toggle.syncState();
-        drawerLayout.addDrawerListener(toggle);
-
-        navigationView = findViewById(R.id.navigation);
-
-
-        mSharedPreferences =getSharedPreferences("SortSettings",MODE_PRIVATE);
-
-        // now by default new arrivals will be seen first
-        String start = mSharedPreferences.getString("SortLadies","newest");
-
-        if(start.equals("newest")){
-            mLayoutManager  =  new LinearLayoutManager(this);
-            //this means data will load from the bottom ie from the newest to the oldest
-            mLayoutManager.setReverseLayout(true);
-            mLayoutManager.setStackFromEnd(true);
-        }
-        else if(start.equals("oldest")){
-            mLayoutManager  =  new LinearLayoutManager(this);
-            //this means data will load from the top ie from the oldest to the newest
-            mLayoutManager.setReverseLayout(false);
-            mLayoutManager.setStackFromEnd(false);
         }
 
-        recyclerView = findViewById(R.id.recycle_view);
-        recyclerView.setHasFixedSize(true);
 
-        mFireBase = FirebaseDatabase.getInstance();
-        reference = mFireBase.getReference("Data");
+            final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
 
-        //set layout as LinearLayout
-        recyclerView.setLayoutManager(mLayoutManager);
+
+            Toolbar toolbar = findViewById(R.id.app_bar);
+            drawerLayout = findViewById(R.id.drawer1);
+            setSupportActionBar(toolbar);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+            toggle.syncState();
+            drawerLayout.addDrawerListener(toggle);
+
+            navigationView = findViewById(R.id.navigation);
+
+
+            mSharedPreferences = getSharedPreferences("SortSettings", MODE_PRIVATE);
+
+            // now by default new arrivals will be seen first
+            String start = mSharedPreferences.getString("SortLadies", "newest");
+
+            if (start.equals("newest")) {
+                mLayoutManager = new LinearLayoutManager(this);
+                //this means data will load from the bottom ie from the newest to the oldest
+                mLayoutManager.setReverseLayout(true);
+                mLayoutManager.setStackFromEnd(true);
+            } else if (start.equals("oldest")) {
+                mLayoutManager = new LinearLayoutManager(this);
+                //this means data will load from the top ie from the oldest to the newest
+                mLayoutManager.setReverseLayout(false);
+                mLayoutManager.setStackFromEnd(false);
+            }
+
+            recyclerView = findViewById(R.id.recycle_view);
+            recyclerView.setHasFixedSize(true);
+
+            mFireBase = FirebaseDatabase.getInstance();
+            reference = mFireBase.getReference("Data");
+
+            //set layout as LinearLayout
+            recyclerView.setLayoutManager(mLayoutManager);
 
 
 
@@ -245,6 +267,8 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
             //display an alert Dialogue to choose from
             sortDialogue();
             return true;
+        }else if(id == R.id.rate){
+            Toast.makeText(this,"You have clicked Rate me",Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -292,9 +316,9 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch(item.getItemId()){
+        switch(item.getItemId()) {
             case R.id.help:
-                Toast.makeText(this,"Help Button has been Touched",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Help Button has been Touched", Toast.LENGTH_SHORT).show();
                 break;
 
         }
@@ -302,5 +326,15 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
 
 
         return true;
+    }
+
+
+    private boolean connectivity(){
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected();
+
     }
 }

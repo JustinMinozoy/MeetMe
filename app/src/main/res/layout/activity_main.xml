@@ -11,80 +11,92 @@
         android:background="#686de0">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/lay_image">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/p2"/>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_below="@+id/lay_image"
             android:id="@+id/des"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
-                android:text="About The App"
-                android:id="@+id/about"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:textSize="30dp"
-                android:layout_centerInParent="true"
+
+            <ImageView
+                android:id="@+id/p2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/below"
-            android:layout_below="@+id/des"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:id="@+id/desc"
-                android:layout_marginTop="20dp"
-                android:text="@string/decription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="350dp"
+                android:src="@drawable/p2"/>
+
         </RelativeLayout>
 
 
 
         <CheckBox
             android:id="@+id/confirm"
+            android:layout_below="@+id/des"
             android:layout_margin="10dp"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/check"
-            android:layout_below="@+id/below"/>
-        <GridLayout
+            android:text="@string/check" />
+        <RelativeLayout
             android:id="@+id/Grid"
+            android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/confirm">
+            android:layout_below="@id/confirm"
+            android:layout_centerHorizontal="true">
 
-            <Button
-                android:layout_centerInParent="true"
-                android:textSize="23dp"
-                android:visibility="invisible"
-                android:textAllCaps="false"
-                android:id="@+id/btn_signin"
-                android:layout_width="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/container"
+                android:padding="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
-                android:paddingRight="90dp"
-                android:paddingLeft="90dp"
-                android:layout_below="@id/confirm"
-                android:background="@drawable/back"/>
+                android:visibility="visible">
 
 
-        </GridLayout>
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="150dp"
+                    android:layout_height="57dp"
+                    android:layout_marginEnd="190dp"
+                    android:layout_marginRight="224dp"
+                    android:layout_marginBottom="72dp"
+                    app:ccp_clickable="true"
+                    app:ccp_contentColor="@android:color/background_light"
+                    app:ccp_defaultNameCode="UG"
+                    app:ccp_showFlag="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/phoneText"
+                    android:layout_width="157dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="84dp"
+                    android:hint="Telephone"
+                    android:inputType="number"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <Button
+                    android:id="@+id/btnproceed"
+                    android:layout_width="300dp"
+                    android:layout_height="62dp"
+                    android:text="Request Code"
+                    android:padding="20dp"
+                    android:background="@drawable/back"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.49"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

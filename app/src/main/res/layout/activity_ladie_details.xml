@@ -1,46 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:background="@color/colorPrimaryDark"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardBackgroundColor="@color/colorPrimary"
-    app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
-    app:contentPadding="5dp"
-    app:cardUseCompatPadding="true"
-    tools:context=".LadieDetails">
+    >
+    <RelativeLayout
+        android:layout_width="387dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar"/>
 
-    <LinearLayout
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:contentPadding="1dp"
+        android:layout_marginTop="50dp"
+        app:cardUseCompatPadding="true"
+        tools:context=".LadieDetails">
 
-        <TextView
-            android:id="@+id/title"
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
-            android:textColor="#7E0808"
-            android:text="Title"
-            android:textStyle="bold"/>
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:background="@drawable/load"/>
-        <TextView
-            android:id="@+id/Price"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:textColor="#F5FCF8"
+                android:text="Title"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:background="@drawable/load"/>
+            <TextView
+                android:id="@+id/Price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="25dp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Price"
-            android:textSize="25dp"
-            android:textColor="#000"
-            android:textStyle="bold"/>
+            android:layout_marginTop="400dp">/>
+
+            <Button
+                android:id="@+id/btn_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textAllCaps="false"
+                android:padding="12dp"
+                android:textSize="20dp"
+                android:background="@drawable/back" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
+</RelativeLayout>
