@@ -35,65 +35,15 @@
             android:text="@string/check" />
         <RelativeLayout
             android:id="@+id/Grid"
-            android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/confirm"
             android:layout_centerHorizontal="true">
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/container"
-                android:padding="10dp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible">
 
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/ccp"
-                    android:layout_width="150dp"
-                    android:layout_height="57dp"
-                    android:layout_marginEnd="190dp"
-                    android:layout_marginRight="224dp"
-                    android:layout_marginBottom="72dp"
-                    app:ccp_clickable="true"
-                    app:ccp_contentColor="@android:color/background_light"
-                    app:ccp_defaultNameCode="UG"
-                    app:ccp_showFlag="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
-
-                <EditText
-                    android:id="@+id/phoneText"
-                    android:layout_width="157dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginBottom="84dp"
-                    android:hint="Telephone"
-                    android:inputType="number"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <Button
-                    android:id="@+id/btnproceed"
-                    android:layout_width="300dp"
-                    android:layout_height="62dp"
-                    android:text="Request Code"
-                    android:padding="20dp"
-                    android:background="@drawable/back"
-                    android:textColor="@android:color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.49"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
 
 
         </RelativeLayout>

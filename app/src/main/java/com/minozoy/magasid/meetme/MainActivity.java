@@ -22,15 +22,6 @@ public class MainActivity extends AppCompatActivity {
      private RelativeLayout layout;
      public CheckBox checkBox;
 
-    private EditText editText;
-
-    private CountryCodePicker countryCodePicker;
-    private String TAG;
-    public String verifiCation;
-    private String phoneNumber;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    private FirebaseAuth firebaseAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,57 +34,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkBox.isChecked()) {
-                    //layout.setVisibility(View.VISIBLE);
-                    Intent intent = new Intent(MainActivity.this,profiles.class);
-                    startActivity(intent);
-                    finish();
+                    layout.setVisibility(View.VISIBLE);
+
                 } else {
                     layout.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
-        editText = (EditText) findViewById(R.id.phoneText);
-        countryCodePicker = (CountryCodePicker) findViewById(R.id.ccp);
-        countryCodePicker.registerCarrierNumberEditText(editText);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        findViewById(R.id.btnproceed).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String code = countryCodePicker.getFullNumberWithPlus();
-
-
-
-                if (code.isEmpty() || code.length() < 10) {
-                    editText.setError("Invalid Phone Number");
-                    editText.requestFocus();
-                    return;
-                }
-
-                String phonenumber = "+" + code ;
-
-                Intent intent = new Intent(MainActivity.this, VerificationActivity.class);
-                intent.putExtra("phonenumber", phonenumber);
-                startActivity(intent);
-
-            }
-        });
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(MainActivity.this, VerificationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-            startActivity(intent);
-        }
-    }
+    //code for google sign in
 
     @Override
     public void onBackPressed() {
