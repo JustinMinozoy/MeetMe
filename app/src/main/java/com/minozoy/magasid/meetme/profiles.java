@@ -1,14 +1,19 @@
 package com.minozoy.magasid.meetme;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,8 +29,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -47,24 +54,14 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
+    TextView textView;
+
+    private static final int Request_Call =1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
-
-        if(!connectivity()){
-            new AlertDialog.Builder(this)
-                    .setIcon(R.drawable.ic_stat_network)
-                    .setTitle("Network Connection Alert")
-                    .setMessage("Please Check your Internet Connection!!!")
-                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    });
-
-        }
 
 
             final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
@@ -109,7 +106,7 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
             //set layout as LinearLayout
             recyclerView.setLayoutManager(mLayoutManager);
 
-
+            textView = findViewById(R.id.email);
 
     }
 
@@ -256,6 +253,7 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
         return super.onCreateOptionsMenu(menu);
     }
 
+    //menu item on the tool bar  method
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -267,8 +265,33 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
             //display an alert Dialogue to choose from
             sortDialogue();
             return true;
-        }else if(id == R.id.rate){
-            Toast.makeText(this,"You have clicked Rate me",Toast.LENGTH_SHORT).show();
+        }else if(id == R.id.help){
+           callPerson();
+        }
+        else if(id == R.id.rate){
+            Intent intent = new Intent(this,RatingActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else if(id == R.id.share){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            String ShareSubject = ("This is the begining");
+            intent.putExtra(Intent.EXTRA_SUBJECT,ShareSubject);
+            startActivity(Intent.createChooser(intent,"Share using"));
+        }
+        else if(id == R.id.setting){
+            Intent intent = new Intent(this,Settings.class);
+            startActivity(intent);
+            finish();
+
+        }
+        else if(id == R.id.log_out){
+            Toast.makeText(this,"You have clicked Log Out",Toast.LENGTH_SHORT).show();
+        }
+        else if(id == R.id.feedback){
+            //startActivity(new Intent(profiles.this, Feedback.class));
+            //finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -316,15 +339,7 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch(item.getItemId()) {
-            case R.id.help:
-                Toast.makeText(this, "Help Button has been Touched", Toast.LENGTH_SHORT).show();
-                break;
-
-        }
         drawerLayout.closeDrawer(GravityCompat.START);
-
-
         return true;
     }
 
@@ -335,6 +350,174 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         return networkInfo != null && networkInfo.isConnected();
+
+    }
+
+
+    private void callPerson() {
+        String  nummber = "0703394151";
+
+        if(ContextCompat.checkSelfPermission(profiles.this,
+                Manifest.permission.CALL_PHONE )!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(profiles.this,new String[] {Manifest.permission.CALL_PHONE},Request_Call);
+
+        }else {
+            String dial = "tel:" +nummber;
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == Request_Call){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                callPerson();
+            }else {
+                Toast.makeText(this,"PERMISSION DENIED",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+
+        if(!connectivity()){
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_stat_network)
+                    .setTitle("Network Connection Alert")
+                    .setMessage("Please Check your Internet Connection!!!")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+
+        }
+
+
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
+
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        drawerLayout = findViewById(R.id.drawer1);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        toggle.syncState();
+        drawerLayout.addDrawerListener(toggle);
+
+        navigationView = findViewById(R.id.navigation);
+
+
+        mSharedPreferences = getSharedPreferences("SortSettings", MODE_PRIVATE);
+
+        // now by default new arrivals will be seen first
+        String start = mSharedPreferences.getString("SortLadies", "newest");
+
+        if (start.equals("newest")) {
+            mLayoutManager = new LinearLayoutManager(this);
+            //this means data will load from the bottom ie from the newest to the oldest
+            mLayoutManager.setReverseLayout(true);
+            mLayoutManager.setStackFromEnd(true);
+        } else if (start.equals("oldest")) {
+            mLayoutManager = new LinearLayoutManager(this);
+            //this means data will load from the top ie from the oldest to the newest
+            mLayoutManager.setReverseLayout(false);
+            mLayoutManager.setStackFromEnd(false);
+        }
+
+        recyclerView = findViewById(R.id.recycle_view);
+        recyclerView.setHasFixedSize(true);
+
+        mFireBase = FirebaseDatabase.getInstance();
+        reference = mFireBase.getReference("Data");
+
+        //set layout as LinearLayout
+        recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        if(!connectivity()){
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_stat_network)
+                    .setTitle("Network Connection Alert")
+                    .setMessage("Please Check your Internet Connection!!!")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+
+        }
+
+
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
+
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        drawerLayout = findViewById(R.id.drawer1);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        toggle.syncState();
+        drawerLayout.addDrawerListener(toggle);
+
+        navigationView = findViewById(R.id.navigation);
+
+
+        mSharedPreferences = getSharedPreferences("SortSettings", MODE_PRIVATE);
+
+        // now by default new arrivals will be seen first
+        String start = mSharedPreferences.getString("SortLadies", "newest");
+
+        if (start.equals("newest")) {
+            mLayoutManager = new LinearLayoutManager(this);
+            //this means data will load from the bottom ie from the newest to the oldest
+            mLayoutManager.setReverseLayout(true);
+            mLayoutManager.setStackFromEnd(true);
+        } else if (start.equals("oldest")) {
+            mLayoutManager = new LinearLayoutManager(this);
+            //this means data will load from the top ie from the oldest to the newest
+            mLayoutManager.setReverseLayout(false);
+            mLayoutManager.setStackFromEnd(false);
+        }
+
+        recyclerView = findViewById(R.id.recycle_view);
+        recyclerView.setHasFixedSize(true);
+
+        mFireBase = FirebaseDatabase.getInstance();
+        reference = mFireBase.getReference("Data");
+
+        //set layout as LinearLayout
+        recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
 
     }
 }

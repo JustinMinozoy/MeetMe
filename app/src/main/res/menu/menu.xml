@@ -14,7 +14,7 @@
         android:title="SortLadies"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/help" android:title="Help" android:icon="@drawable/ic_stat_help"/>
+    <item android:id="@+id/help" android:title="Call for Help" android:icon="@drawable/ic_stat_help"/>
     <item android:id="@+id/feedback" android:title="Feedback" android:icon="@drawable/ic_stat_fed"/>
     <item android:id="@+id/rate" android:title="Rate this up" android:icon="@drawable/rate"/>
     <item android:id="@+id/setting" android:title="Settings" android:icon="@drawable/ic_stat_settings"/>

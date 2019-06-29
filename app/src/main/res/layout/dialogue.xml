@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/codemeso"
             android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

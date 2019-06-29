@@ -7,29 +7,32 @@
     android:background="@color/colorPrimary"
     tools:context=".RatingActivity">
 
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/toolbar"/>
+
+    <com.hsalf.smilerating.SmileRating
+        android:id="@+id/smile_rating"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="200dp"
-        android:numStars="5"
-        android:rating="3.5"/>
-    <Button
-        android:id="@+id/btnGet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ratingBar1"
-        android:layout_below="@+id/ratingBar1"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="60dp"
-        android:text="Get Rating"/>
+        android:layout_centerVertical="true"
+        app:angryColor="#f29a68"
+        app:drawingColor="#353431"
+        app:normalColor="#f2dd68"
+        app:isIndicator="false"
+        app:placeHolderBackgroundColor="#e6e8ed"
+        app:placeHolderSmileColor="#ffffff"
+        app:textNonSelectionColor="#AEB3B5"
+        app:textSelectionColor="#000000"/>
+
+
     <TextView
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnGet"
-        android:layout_below="@+id/btnGet"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/smile_rating"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:textStyle="bold"/>

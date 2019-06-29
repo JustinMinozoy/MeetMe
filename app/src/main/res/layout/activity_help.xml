@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".HelpActivity">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar"/>
 
         <Button
             android:id="@+id/report"

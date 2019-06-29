@@ -33,8 +33,8 @@ public class HelpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(HelpActivity.this, Feedback.class));
-                finish();
+                //startActivity(new Intent(HelpActivity.this, Feedback.class));
+                //finish();
             }
         });
 
@@ -42,7 +42,6 @@ public class HelpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(HelpActivity.this, HelplineCall.class));
             }
         });
 
