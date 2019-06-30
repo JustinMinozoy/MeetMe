@@ -21,5 +21,4 @@
     <item android:id="@+id/share" android:title="Share" android:icon="@drawable/ic_stat_share"/>
     <item android:id="@+id/log_out" android:title="Log Out" android:icon="@drawable/log_out"/>
 
-
 </menu>

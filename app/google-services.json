@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "120613437894-uqie8320occ2nnb1pm4tnivcimdsc4pd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.minozoy.magasid.meetme",
+            "certificate_hash": "084bbfaba8c1543cec3545a621e8bfe7b8ae071c"
+          }
+        },
+        {
           "client_id": "120613437894-ti6ddfsmkgcbival4mjf70gjaesv6fki.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
