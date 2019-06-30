@@ -104,7 +104,6 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
 
             //set layout as LinearLayout
             recyclerView.setLayoutManager(mLayoutManager);
-
             textView = findViewById(R.id.email);
 
     }
@@ -183,7 +182,6 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
                     protected void populateViewHolder(viewHolder viewHolder, model model, int position) {
                         viewHolder.Setdetails(getApplicationContext(),model.getTitle(),model.getPrice(),model.getImage());
                     }
-
 
                     @Override
                     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -285,23 +283,24 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
             finish();
 
         }
-        else if(id == R.id.log_out){
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user !=null){
-                firebaseAuth.signOut();
-                Intent intent = new Intent(profiles.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-            else {
-                Toast.makeText(getApplicationContext(),"User is already signed out", Toast.LENGTH_LONG).show();
-            }
+        else if (id == R.id.log_out){
+            logout();
         }
+
+
         else if(id == R.id.feedback){
             //startActivity(new Intent(profiles.this, Feedback.class));
             //finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
     }
 
     private void sortDialogue() {
@@ -391,7 +390,6 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
     @Override
     protected void onRestart() {
         super.onRestart();
-
 
         if(!connectivity()){
             new AlertDialog.Builder(this)
@@ -518,3 +516,5 @@ public class profiles extends AppCompatActivity  implements NavigationView.OnNav
 
     }
 }
+
+
