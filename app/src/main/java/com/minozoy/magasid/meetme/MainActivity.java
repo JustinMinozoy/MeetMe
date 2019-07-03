@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onClick(View v) {
                 if (checkBox.isChecked()) {
-                    //layout.setVisibility(View.VISIBLE);
-                    Intent intent = new Intent(MainActivity.this,profiles.class);
-                    startActivity(intent);
-                    finish();
+                    layout.setVisibility(View.VISIBLE);
+                    //Intent intent = new Intent(MainActivity.this,profiles.class);
+                    //startActivity(intent);
+                    //finish();
 
                 } else {
                     layout.setVisibility(View.INVISIBLE);
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
     private void gotoProfile(){
-        Intent intent=new Intent(MainActivity.this,GProfilesActivity.class);
+        Intent intent=new Intent(MainActivity.this,profiles.class);
         startActivity(intent);
     }
 

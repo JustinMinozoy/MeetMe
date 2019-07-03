@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
                 .withAfterLogoText("")
                 .withLogo(R.drawable.p2);
         easy_splash.getAfterLogoTextView().setTextColor(Color.BLUE);
-        easy_splash.getFooterTextView().setTextColor(Color.TRANSPARENT);
+        easy_splash.getFooterTextView().setTextColor(Color.MAGENTA);
         easy_splash.getAfterLogoTextView().setTextColor(Color.BLUE);
 
         View view = easy_splash.create();
